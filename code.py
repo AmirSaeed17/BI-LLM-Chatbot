@@ -2,6 +2,7 @@
 
 from langchain.llms import Ollama
 from langchain.document_loaders import CSVLoader
+from langchain.llms import HuggingFaceHub
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import Chroma
@@ -27,7 +28,6 @@ embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-
 db = Chroma.from_documents(documents=chunks, embedding = embeddings, persist_directory="./chroma_db")
 
 # step 5 --- load the phi2 model
-from langchain.llms import HuggingFaceHub
 llm_model = HuggingFaceHub(
     repo_id= "google/flan-t5-small ",
     huggingfacehub_api_token="your_API_token" )
